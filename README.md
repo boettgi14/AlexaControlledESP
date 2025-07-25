@@ -5,7 +5,7 @@ This project enables Amazon Alexa voice control of 433MHz smart plugs through an
 ## 🎯 Project Overview
 
 The system consists of:
-- **ESP8266** microcontroller (ESP-12E module) - [Datasheet](esp8266_ch340_micro_usb_interface.pdf) *(example for this specific board)*
+- **ESP8266** microcontroller (ESP-12E module)
 - **8 relays** controlled by the ESP8266 GPIO pins
 - **433MHz remote control** operated by the relays
 - **4 smart plugs** operating on 433MHz frequency
@@ -13,14 +13,27 @@ The system consists of:
 
 The ESP8266 connects to your WiFi network and appears as Philips Hue devices to Alexa. When you give voice commands, the ESP8266 activates relays that physically press the buttons on the 433MHz remote, controlling the smart plugs.
 
+## 📋 Prerequisites
+
+- **Hardware:**
+  - ESP8266 development board (ESP-12E module) - [Datasheet](esp8266_ch340_micro_usb_interface.pdf) *(example for a board that matches the specifications for the project)*
+  - 8x relays (5V or 3.3V compatible)
+  - 433MHz remote control for your smart plugs *(example shown below)*
+  
+      <img src="remote.jpg" alt="Example of a typical 433MHz remote control with A/B/C/D buttons" width="200">
+      
+      *This is an example of how your 433MHz remote might look. Your remote may have different labeling or design, but should have separate ON/OFF buttons for each channel (A, B, C, D).*
+
+  - Jumper wires for connections
+  - USB cable for programming
+  - Breadboard or PCB for connections
+
+- **Software:**
+  - [Visual Studio Code](https://code.visualstudio.com/)
+  - [PlatformIO extension](https://platformio.org/install/ide/vscode) for VS Code
+  - Amazon Alexa device (Echo, Dot, etc.) or Alexa app
+
 ## 🔧 Hardware Setup
-
-### 433MHz Remote Control
-The project uses a 433MHz remote control to operate the smart plugs:
-
-<img src="remote.jpg" alt="433MHz Remote Control" width="300">
-
-*Note: This is an example remote. Your 433MHz remote may look different but should have similar ON/OFF buttons for each smart plug.*
 
 ### Pin Configuration
 The ESP8266 is connected to 8 relays that control the 433MHz remote with the following pin mapping:
@@ -46,22 +59,7 @@ The ESP8266 is connected to 8 relays that control the 433MHz remote with the fol
 5. Power the relays according to their specifications (usually 5V or 3.3V)
 6. Each relay should be wired as a normally open (NO) switch across the remote button contacts
 
-## 📋 Prerequisites
-
-- **Hardware:**
-  - ESP8266 development board (ESP-12E recommended) - [Datasheet](esp8266_ch340_micro_usb_interface.pdf) *(example for this specific board)*
-  - 8x relays (5V or 3.3V compatible)
-  - 433MHz remote control for your smart plugs
-  - Jumper wires for connections
-  - USB cable for programming
-  - Breadboard or PCB for connections
-
-- **Software:**
-  - [Visual Studio Code](https://code.visualstudio.com/)
-  - [PlatformIO extension](https://platformio.org/install/ide/vscode) for VS Code
-  - Amazon Alexa device (Echo, Dot, etc.) or Alexa app
-
-## 🚀 Installation & Setup
+## 🚀 Installation & Software Setup
 
 ### 1. Clone the Repository
 ```bash
@@ -90,7 +88,7 @@ cd AlexaControlledESP
    - Click "Upload" to flash the ESP8266
    - Click "Monitor" to view serial output
 
-#### 4. Device Discovery
+### 4. Device Discovery
 1. After successful upload, the ESP8266 will connect to your WiFi
 2. Open the Alexa app on your phone
 3. Go to **Devices** → **Add Device** → **Light** → **Other**
@@ -112,37 +110,6 @@ Once set up, you can control your smart plugs with these voice commands:
 ```
 
 You can also rename the devices in the Alexa app to more friendly names like "Living Room Lamp" or "Coffee Maker".
-
-## 🔧 Customization
-
-### Changing Device Names
-Edit the device names in `src/main.cpp`:
-```cpp
-#define ID_A "Living Room Lamp"
-#define ID_B "Coffee Maker"
-#define ID_C "Bedroom Light"
-#define ID_D "Fan"
-```
-
-### Adjusting Pin Configuration
-Modify the pin definitions if you're using different GPIO pins:
-```cpp
-#define A_ON D0
-#define A_OFF D1
-// ... etc
-```
-
-### Signal Timing
-The default signal sends 2 pulses with 50ms intervals. Adjust if needed:
-```cpp
-for (int i = 0; i < 2; i++) {  // Number of pulses
-    digitalWrite(A_ON, setState ? LOW : HIGH);
-    delay(50);  // Pulse duration
-    digitalWrite(A_ON, HIGH);
-    delay(50);  // Interval between pulses
-}
-```
-
 ## 🔍 Troubleshooting
 
 ### ESP8266 Won't Connect to WiFi
