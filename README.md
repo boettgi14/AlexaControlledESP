@@ -138,5 +138,13 @@ You can also rename the devices in the Alexa app to more friendly names like "Li
 
 ## 📚 Libraries Used
 
-- **[fauxmoESP](https://github.com/vintlabs/fauxmoESP)** - Amazon Alexa support for ESP8266/ESP32
-- **[ESPAsyncTCP](https://github.com/me-no-dev/ESPAsyncTCP)** - Asynchronous TCP library for ESP8266
+- **[fauxmoESP](https://github.com/vintlabs/fauxmoESP)** - Amazon Alexa support for ESP8266/ESP32 (MIT License, see [lib/fauxmoESP/LICENSE](lib/fauxmoESP/LICENSE))
+- **[ESPAsyncTCP](https://github.com/me-no-dev/ESPAsyncTCP)** - Asynchronous TCP library for ESP8266 (LGPL-3.0, see [lib/ESPAsyncTCP/LICENSE.txt](lib/ESPAsyncTCP/LICENSE.txt))
+
+Both libraries are included in the `lib/` folder together with their original license files and copyright notices.
+
+## 📄 License
+
+The code of this project is released under the [MIT License](LICENSE).
+
+The libraries in `lib/` are **not** covered by this license. They keep their own licenses, as listed above. If you distribute compiled firmware built from this project, keep in mind the LGPL-3.0 requirements of ESPAsyncTCP (license notice, license text, and the ability to relink; providing the full source code of this project satisfies the latter).
