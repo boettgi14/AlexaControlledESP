@@ -1,4 +1,4 @@
-# AlexaControlledESP
+# ESP8266 Alexa 433MHz Plugs
 
 This project enables Amazon Alexa voice control of 433MHz smart plugs through an ESP8266 microcontroller. The ESP8266 emulates Philips Hue devices, allowing Alexa to discover and control 4 individual smart plugs wirelessly.
 
@@ -63,8 +63,8 @@ The ESP8266 is connected to 8 relays that control the 433MHz remote with the fol
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/boettgi14/AlexaControlledESP.git
-cd AlexaControlledESP
+git clone https://github.com/boettgi14/ESP8266-Alexa-433MHz-Plugs.git
+cd ESP8266-Alexa-433MHz-Plugs
 ```
 
 ### 2. Configure WiFi Credentials
